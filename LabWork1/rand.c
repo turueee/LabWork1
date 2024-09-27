@@ -14,11 +14,13 @@
 
 int main()
 {
-  double random_number = 0, min_ch = 0, max_ch = 0, result = 0, number = 0, time_of_on = time(0);
+  double random_number = 0, min_ch = 0, max_ch = 0, result = 0, number = 0;
   int count_of_numbers = 0, counter = 0, index_of_massive = 0, dec_remain, index;
   char first_massive_of_remains[250000], second_massive_of_remains[250000];
   char third_massive_of_remains[250000], fourth_massive_of_remains[250000];
-  FILE* fil;
+  double time_spent = 0.0;
+  clock_t begin = clock();
+  FILE* file_of_numbers;
   for (counter; counter < 250000; counter++)
   {
     first_massive_of_remains[counter] = 0;
@@ -30,7 +32,7 @@ int main()
   scanf("%lf", &max_ch);
   scanf("%d", &count_of_numbers);
 
-  fil = fopen("stor.txt", "w");
+  file_of_numbers = fopen("stor.txt", "w");
   for (counter = 0; counter < count_of_numbers; counter++)
   {
     random_number = make_random_number(min_ch, max_ch, counter);
@@ -38,8 +40,8 @@ int main()
 
     if (counter < 1000000)
     {
-      if (fil != NULL)
-        fprintf(fil, "%lf\n", random_number);
+      if (file_of_numbers != NULL)
+        fprintf(file_of_numbers, "%lf\n", random_number);
       else
         printf("IDIOT");
     }
@@ -65,14 +67,14 @@ int main()
       fourth_massive_of_remains[dec_remain - 750000] = 1;
     }
   }
-  fclose(fil);
+  fclose(file_of_numbers);
 
-  fil = fopen("stor.txt", "r");
+  file_of_numbers = fopen("stor.txt", "r");
   if (count_of_numbers > 1000000)
     count_of_numbers = 1000000;
   for (counter = 0; counter < count_of_numbers; counter++)
   {
-    fscanf(fil, "%lf\n", &number);
+    fscanf(file_of_numbers, "%lf\n", &number);
 
     if (counter >= 0 && counter < 250000)
     {
@@ -100,7 +102,10 @@ int main()
       result += number;
     }
   }
+  fclose(file_of_numbers);
+  clock_t end = clock();
+  time_spent += (double)(end - begin);
   //for (counter = 0; counter < 250000; counter++)
     //printf("|%d| |%d| |%d| |%d|", first_massive_of_remains[counter], second_massive_of_remains[counter], third_massive_of_remains[counter], fourth_massive_of_remains[counter]);
-  printf("%lf", result);
+  printf("%lf %lf", result, time_spent);
 }
