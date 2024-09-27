@@ -28,8 +28,11 @@ int main()
     third_massive_of_remains[counter] = 0;
     fourth_massive_of_remains[counter] = 0;
   }
+  printf("Enter the minimum number to generate: ");
   scanf("%lf", &min_ch);
+  printf("Enter the maximum number to generate: ");
   scanf("%lf", &max_ch);
+  printf("Enter the count of generated numbers: ");
   scanf("%d", &count_of_numbers);
 
   file_of_numbers = fopen("stor.txt", "w");
@@ -104,8 +107,8 @@ int main()
   }
   fclose(file_of_numbers);
   clock_t end = clock();
-  time_spent += (double)(end - begin);
+  time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
   //for (counter = 0; counter < 250000; counter++)
     //printf("|%d| |%d| |%d| |%d|", first_massive_of_remains[counter], second_massive_of_remains[counter], third_massive_of_remains[counter], fourth_massive_of_remains[counter]);
-  printf("%lf %lf", result, time_spent);
+  printf("Result: %lf.\nExcecution time: %lf seconds.", result, time_spent);
 }
