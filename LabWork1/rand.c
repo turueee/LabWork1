@@ -1,6 +1,5 @@
-
 #define _CRT_SECURE_NO_WARNINGS
-
+#define CLOCK_PER_SEC
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +18,7 @@ int main()
   char first_massive_of_remains[250000], second_massive_of_remains[250000];
   char third_massive_of_remains[250000], fourth_massive_of_remains[250000];
   double time_spent = 0.0;
-  clock_t begin = clock();
+  clock_t begin = 0, end = 0;
   FILE* file_of_numbers;
   for (counter; counter < 250000; counter++)
   {
@@ -35,6 +34,7 @@ int main()
   printf("Enter the count of generated numbers: ");
   scanf("%d", &count_of_numbers);
 
+  begin = clock();
   file_of_numbers = fopen("stor.txt", "w");
   for (counter = 0; counter < count_of_numbers; counter++)
   {
@@ -106,7 +106,7 @@ int main()
     }
   }
   fclose(file_of_numbers);
-  clock_t end = clock();
+  end = clock();
   time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
   //for (counter = 0; counter < 250000; counter++)
     //printf("|%d| |%d| |%d| |%d|", first_massive_of_remains[counter], second_massive_of_remains[counter], third_massive_of_remains[counter], fourth_massive_of_remains[counter]);

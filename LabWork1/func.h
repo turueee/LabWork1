@@ -8,7 +8,7 @@ double make_random_number(double min_ch, double max_ch, int sid_variable)
 {
   double zero_one = 0, random_number = 0, zero_max_ch = 0;
   int randomization = 0;
-  srand(time(0) + sid_variable * 4345);
+  srand(clock());
   randomization = rand();
   zero_one = (double)randomization / RAND_MAX;
   zero_max_ch = zero_one * (max_ch - min_ch);
