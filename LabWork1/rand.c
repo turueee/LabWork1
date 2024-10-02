@@ -108,7 +108,5 @@ int main()
   fclose(file_of_numbers);
   end = clock();
   time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-  //for (counter = 0; counter < 250000; counter++)
-    //printf("|%d| |%d| |%d| |%d|", first_massive_of_remains[counter], second_massive_of_remains[counter], third_massive_of_remains[counter], fourth_massive_of_remains[counter]);
   printf("Result: %lf.\nExcecution time: %lf seconds.", result, time_spent);
 }
